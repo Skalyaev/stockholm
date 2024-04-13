@@ -1,40 +1,47 @@
-# Stockholm
+# <p align="center">stockholm</p>
+> *Introduction à la manipulation de fichiers par la création d'un malware inoffensif.*
+>
+> *Dans ce projet, vous développerez un petit programme dans le but de comprendre le fonctionnement des malwares. Nous nous concentrerons sur les rançongiciels (logiciels rançonneurs).*
+>
+> *Une caractéristique spécifique de ce type de programme est sa capacité à se propager à travers des réseaux de centaines d'ordinateurs. Dans notre cas, votre programme n'affectera qu'une petite partie de vos fichiers locaux. L'objectif est de comprendre le fonctionnement d'un programme relativement simple afin de mieux vous en protéger.*
 
-*Introduction to file manipulation by creating a harmless malware.*
+## Install
+```bash
+sudo apt update -y
+sudo apt install -y make
+sudo apt install -y docker.io
+```
+```bash
+link=Skalyaeve/stockholm
+name=stockholm
 
-In this project you will develop a small program with the aim of understanding how malware works.
-We will focus on ransomware.
-A specific feature of this type of program is its ability to spread through networks of hundreds of computers.
-In our case, your program will only affect a small portion of your local files.
-It’s all about understanding how a fairly simple program works in order to better protect yourself from it.
+git clone https://github.com/$link.git $name
+cd $name && sudo make docker
+```
 
 ## Usage
-```sh
-sudo apt update
-sudo apt install git make docker.io
-git clone git@github.com:Skalyaeve/stockholm.git
-cd stockholm
-sudo make docker
+```bash
 sudo docker exec -it test_docker bash
 ```
-```sh
-echo -e "==================\n\nBefore:"
+```bash
+echo -e "==================\nBefore:"
 find ../infection -type f | xargs cat
 
-echo -e "\nRunning:"
+echo -e "\nRunning ./stockholm:"
 ./stockholm
 
 echo -e "\nAfter:"
 find ../infection -type f | xargs cat
 
-echo -e "\nRunning:"
+echo -e "\nRunning ./stockholm -r:"
 ./stockholm -r
 
 echo -e "\nRestored:"
 find ../infection -type f | xargs cat
+exit
 ```
-
-```sh
+```bash
 sudo make docker-stop
 sudo make docker-clean
 ```
+
