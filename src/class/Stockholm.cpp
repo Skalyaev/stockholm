@@ -131,7 +131,7 @@ void Stockholm::_crypt(const std::string &workdir, const bool encrypt, const boo
                         if ((extension != "ft") && (extension != this->_target_ext[i]))
                                 continue;
                         std::ifstream file(path.c_str());
-                        if (!file.is_open())
+                        if (!file.is_open() || file.peek() == std::ifstream::traits_type::eof())
                                 continue;
                         try
                         {

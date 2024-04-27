@@ -21,7 +21,9 @@ cd stockholm && sudo make docker
 sudo docker exec -it test_docker bash
 ```
 ```bash
-echo -e "==================\nBefore:"
+RED='\033[0;31m'
+NC='\033[0m'
+echo -e "$RED==================$NC\nBefore:"
 find ../infection -type f | xargs cat
 
 echo -e "\nRunning ./stockholm:"
@@ -35,7 +37,6 @@ echo -e "\nRunning ./stockholm -r:"
 
 echo -e "\nRestored:"
 find ../infection -type f | xargs cat
-exit
 ```
 ```bash
 sudo make docker-stop
